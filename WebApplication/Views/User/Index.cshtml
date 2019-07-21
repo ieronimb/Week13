@@ -1,0 +1,39 @@
+﻿@model List<Students.Web.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Email</td>
+                <td>UserName</td>
+                <td>Details</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var user in Model)
+                {       
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Email</td>
+                            <td>@user.UserName</td>
+                            <td>@Html.ActionLink("Go", "Details", "User", new { id = user.Id }, null)</td>
+                            <td>@Html.ActionLink("Go", "Edit", "User", new { id = user.Id }, null)</td>
+                        </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @Html.ActionLink("Add user", "Add", "User")
+</div>
