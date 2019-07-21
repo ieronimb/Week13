@@ -10,8 +10,8 @@ namespace Students.Web.Controllers
         private static readonly List<UserViewModel> Users = new List<UserViewModel>
         {
             new UserViewModel { Id = 1, Email = "dan@yahoo.com", UserName = "dan", Address = new AddressViewModel()},
-            new UserViewModel { Id = 2, Email = "andrei@yahoo.com", UserName = "andrei", Address = new AddressViewModel() },
-            new UserViewModel { Id = 3, Email = "vlad@yahoo.com", UserName = "vlad", Address = new AddressViewModel() },
+            new UserViewModel { Id = 2, Email = "andrei@yahoo.com", UserName = "andrei", Address = new AddressViewModel()},
+            new UserViewModel { Id = 3, Email = "vlad@yahoo.com", UserName = "vlad", Address = new AddressViewModel()},
         };  
 
         [HttpGet]
@@ -34,6 +34,16 @@ namespace Students.Web.Controllers
             var model = Users.FirstOrDefault(x => x.Id == id);
 
             return View("Add", model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var deleteUser = Users.FirstOrDefault(x => x.Id == id);
+            
+            Users.Remove(deleteUser);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

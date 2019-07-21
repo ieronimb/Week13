@@ -5,7 +5,7 @@ namespace Students.Web.Models
 {
     public class UserViewModel
     {
-        public int? Id { get; set; } 
+        public int? Id { get; set; }
 
         [DisplayName("Nume utilizator")]
         [MinLength(6)]

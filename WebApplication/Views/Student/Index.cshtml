@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Students.Web.Models.StudentViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.EditorFor(modelItem => item.UserName)               
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DropDownList("StudentGender",
+                                    new SelectList(Enum.GetValues(typeof(Students.Web.Models.Gender))),
+                                    "Select Gender",
+                                    new { gender = item.Gender })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    } 
+</table>
